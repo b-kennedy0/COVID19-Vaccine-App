@@ -174,7 +174,15 @@
         <div class="row section-header">
             <div class="col-full">
                 <h4 class="subhead subhead--dark">Data up to: {{latest_date}}</h4>
-                <h4 class="subhead subhead--dark">Retrieved on: <script>document.write(new Date().toLocaleDateString());</script></h4>
+                <h4 class="subhead subhead--dark">Retrieved on: <span id="date"></span><script>var n =  new Date(),
+	y = n.getFullYear(),
+    m = n.getMonth() < 9
+    ? '0' + (n.getMonth() + 1)
+    : (n.getMonth() + 1),
+    d = n.getDate() < 10 
+    ? '0' + n.getDate() 
+    : n.getDate();
+document.getElementById("date").innerHTML = d + "/" + m + "/" + y;</script></h4>
             </div>
         </div>
 
@@ -250,7 +258,7 @@
                 </div>
                 <div class="service-text">
                     <h3 class="h2">Spreading Hope</h3>
-                    <p>As well as providing clear access to public vaccination data, the app was also creating with the aim of spreading hope. As each day passes, the total number of vaccinated people will increase, meaning we get closer to normality. Sharing this information might help to spread reassurance.
+                    <p>As well as providing clear access to public vaccination data, the app was also created with the aim of spreading hope. As each day passes, the total number of vaccinated people will increase, meaning we get closer to normality. Sharing this information might help to spread reassurance.
                     </p>
                 </div>
             </div>
