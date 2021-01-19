@@ -7,6 +7,7 @@ library(sp)
 library(shinymaterial)
 library(httr)
 library(plotly)
+library(jsonlite)
 # Get Data ----------------------------------------------------------------
 url <- ("https://coronavirus.data.gov.uk/api/v1/data?filters=areaType=nation&structure=%7B%22areaType%22:%22areaType%22,%22areaName%22:%22areaName%22,%22areaCode%22:%22areaCode%22,%22date%22:%22date%22,%22newPeopleVaccinatedFirstDoseByPublishDate%22:%22newPeopleVaccinatedFirstDoseByPublishDate%22,%22newPeopleVaccinatedSecondDoseByPublishDate%22:%22newPeopleVaccinatedSecondDoseByPublishDate%22,%22cumPeopleVaccinatedFirstDoseByPublishDate%22:%22cumPeopleVaccinatedFirstDoseByPublishDate%22,%22cumPeopleVaccinatedSecondDoseByPublishDate%22:%22cumPeopleVaccinatedSecondDoseByPublishDate%22%7D&format=csv")
 GET(url, write_disk(tf <- tempfile(fileext = ".csv")))
@@ -17,3 +18,7 @@ url2 <- ("https://coronavirus.data.gov.uk/api/v1/data?filters=areaType=nation&st
 GET(url2, write_disk(tf2 <- tempfile(fileext = ".csv")))
 graph_dataset <- read_csv(tf2)
 graph_dataset <- subset(graph_dataset, select = -c(areaType,areaCode))
+
+# Get GitHub Release Version
+github_data = fromJSON("https://api.github.com/repos/b-kennedy0/COVID19-Vaccine-App/releases/latest")
+version <- github_data$tag_name  
