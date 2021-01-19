@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>COVID-19 Vaccination Progress App</title>
+    <meta name="description" content="An app to show the progression of UK COVID-19 Vaccinations">
+    <meta name="author" content="Bradley Kennedy">
+
+    <!-- mobile specific metas
+    ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/vendor.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- script
+    ================================================== -->
+    <script src="js/modernizr.js"></script>
+    <script src="js/pace.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="shared/shiny.css"/>
+
+    <!-- favicons
+    ================================================== -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
+    <!-- shiny stuff
+        ================================================== -->
+    {{ headContent() }}
+    
+    <style>.selectize-dropdown {z-index: 10000}</style>
+</head>
+
+<body id="top">
+
+    <!-- header
+    ================================================== -->
+    <header class="s-header">
+
+        <nav class="header-nav">
+
+            <a href="#0" class="header-nav__close" title="close"><span>Close</span></a>
+
+            <div class="header-nav__content">
+                <h3>Navigation</h3>
+                
+                <ul class="header-nav__list">
+                    <li class="current"><a class="smoothscroll"  href="#home" title="Home Page">Home</a></li>
+                    <li><a class="smoothscroll"  href="#stats" title="Vaccination Data">Vaccination Data</a></li>
+                    <li><a class="smoothscroll"  href="#per_day" title="Chart of Vaccines per day">Vaccinations per day</a></li>
+                    <li><a class="smoothscroll"  href="#about" title="About the App">About the App</a></li>
+                </ul>
+                <p><a href="https://coronavirus.data.gov.uk/" target="_blank">View data source.</a> Data refreshed daily.<br><br>If you have a suggestions or notice an issue, please report using the link in the <a href="#footer" class="scroll-link smoothscroll">footer</a>.<br><br>Created, hosted and maintained by <a href="https://bradleykennedy.co.uk" target="_blank">Brad Kennedy</a>.<br>If you enjoy using this app, please consider <a href="https://monzo.me/bradleykennedy5/5.00?d=COVID-19%20Vaccine%20App" target="_blank">supporting me.</a> Thank you!</p>
+
+            </div> <!-- end header-nav__content -->
+
+        </nav>  <!-- end header-nav -->
+
+        <a class="header-menu-toggle" href="#0">
+            <span class="header-menu-text">Menu</span>
+            <span class="header-menu-icon"></span>
+        </a>
+
+    </header> <!-- end s-header -->
+
+
+    <!-- home
+    ================================================== -->
+    <section id="home" class="s-home target-section" data-parallax="scroll" data-image-src="images/nasa-earth.webp" data-natural-width=3000 data-natural-height=2000 data-position-y=center>
+
+        <div class="overlay"></div>
+        <div class="shadow-overlay"></div>
+
+        <div class="home-content">
+
+            <div class="row home-content__main">
+
+                <h3>COVID-19 Vaccination Data (UK)</h3>
+
+                <h1>
+                    This app shows the<br>
+                    progress of<br>
+                    COVID-19 vaccination in the UK.
+                </h1>
+                
+
+                <div class="home-content__buttons">
+                    <a href="#stats" class="smoothscroll btn btn--stroke">
+                        View the data
+                    </a>
+                    <a href="#about" class="smoothscroll btn btn--stroke">
+                        About this App
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="home-content__scroll">
+                <a href="#stats" class="scroll-link smoothscroll">
+                    <span>Scroll Down</span>
+                </a>
+            </div>
+
+            <div class="home-content__line"></div>
+
+        </div> <!-- end home-content -->
+
+
+    </section> <!-- end s-home -->
+
+
+    <!-- stats
+    ================================================== -->
+    <section id='stats' class="s-about">
+
+        <div class="row section-header has-bottom-sep" data-aos="fade-up">
+            <div class="col-full">
+                <h3 class="subhead subhead--dark">1st Dose Vaccination Data</h3>
+                <h1 class="display-1 display-1--light">
+                  Total so far in the UK: {{total_no_vaccines_uk}} ({{total_perc_vaccines_uk}}%)
+                  </h1>
+            </div>
+        </div> <!-- end section-header -->
+
+        <!-- end stats-desc -->
+
+        <!--- NUMBERS BY INTEGRATING SHINY OUTPUT -->
+        <div class="row about-stats stats block-1-4 block-m-1-2 block-mob-full" data-aos="fade-up">
+                
+            <div class="col-block stats__col">
+                <h6>England</h6>
+                <div class="stats__count">
+                  {{eng_vaccines_pc}}
+                </div>
+                <h5>% of the population</h5>
+                <h6>{{eng_vaccines_no}} Vaccines</h6>
+            </div>
+            <div class="col-block stats__col">
+                <h6>Wales</h6>
+                <div class="stats__count">
+                  {{wal_vaccines_pc}}
+                </div>
+                <h5>% of the population</h5>
+                <h6>{{wal_vaccines_no}} Vaccines</h6>
+            </div>
+            <div class="col-block stats__col">
+                <h6>Scotland</h6>
+                <div class="stats__count">
+                  {{sco_vaccines_pc}}
+                </div>
+                <h5>% of the population</h5> 
+                <h6>{{sco_vaccines_no}} Vaccines</h6>
+            </div>
+            <div class="col-block stats__col">
+                <h6>Northern Ireland</h6>
+                <div class="stats__count">
+                  {{ni_vaccines_pc}}
+                </div>
+                <h5>% of the population</h5>
+                <h6>{{ni_vaccines_no}} Vaccines</h6>
+            </div>
+
+        </div> 
+            
+         <!--- END NUMBERS BY INTEGRATING SHINY OUTPUT -->
+         
+        <div class="row section-header">
+            <div class="col-full">
+                <h4 class="subhead subhead--dark">Data up to: {{latest_date}}</h4>
+                <h4 class="subhead subhead--dark">Retrieved on: <script>document.write(new Date().toLocaleDateString());</script></h4>
+            </div>
+        </div>
+
+        <div class="about__line"></div>
+
+    </section> 
+    <!-- end s-stats -->
+
+   <!-- per day data
+    ================================================== -->
+    <section id='per_day' class="s-works">
+
+        <div class="intro-wrap">
+                
+            <div class="row section-header has-bottom-sep light-sep" data-aos="fade-up">
+                <div class="col-full">
+                    <h3 class="subhead">Vaccines per day</h3>
+                    <h1 class="display-2 display-2--light">View how many vaccines are being given per day</h1>
+                    <h4 class="subhead"><em>Tap/Click on the Nations to show/hide them</em></h4>
+                </div><!-- end col-full -->
+            </div> <!-- end section-header -->
+            {{plot}}
+        </div> <!-- end intro-wrap -->
+        
+<!-- <div class="row services-list block-1-2 block-tab-full">
+        <div class="col-block service-item aos-init aos-animate" data-aos="fade-up">
+            This is some test content - the controls might be here.
+        </div>
+        <div class="col-block service-item aos-init aos-animate" data-aos="fade-up">
+            This is some test content - the controls might be here.
+        </div>
+      </div> -->
+    </section> <!-- end s-works -->
+
+    <!-- about ================================================== -->
+    <section id='about' class="s-clients">
+      
+      <div class="overlay"></div>
+        <div class="contact__line"></div>
+      
+        <div class="row section-header has-bottom-sep aos-init aos-animate" data-aos="fade-up">
+            <div class="col-full">
+                <h3 class="subhead">About this App</h3>
+                <h1 class="display-2">COVID-19 Vaccination Progress App</h1>
+            </div>
+        </div> <!-- end section-header -->
+
+        <div class="row services-list block-1-2 block-tab-full">
+
+            <div class="col-block service-item" data-aos="fade-up">
+                <div class="service-icon">
+                    <i class="icon-megaphone"></i>
+                </div>
+                <div class="service-text">
+                    <h3 class="h2">Keeping You Updated</h3>
+                    <p>The app was created to enable the centralised sharing of UK vaccination progress. Each NHS service (England, Wales, Scotland) are each publishing their vaccination data but, at the time of development, these data were all separate.</p>
+                </div>
+            </div>
+
+            <div class="col-block service-item" data-aos="fade-up">
+                <div class="service-icon">
+                    <i class="icon-earth"></i>
+                </div>
+                <div class="service-text">
+                    <h3 class="h2">Simple Design</h3>
+                    <p>The app was designed to  run in a web browser on all device types. It is aimed to be as clear and simple as possible.</p>
+                </div>
+            </div>
+
+            <div class="col-block service-item" data-aos="fade-up">
+                <div class="service-icon">
+                    <i class="icon-heart"></i>
+                </div>
+                <div class="service-text">
+                    <h3 class="h2">Spreading Hope</h3>
+                    <p>As well as providing clear access to public vaccination data, the app was also creating with the aim of spreading hope. As each day passes, the total number of vaccinated people will increase, meaning we get closer to normality. Sharing this information might help to spread reassurance.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="col-block service-item" data-aos="fade-up">
+                <div class="service-icon">
+                    <i class="icon-clock"></i>
+                </div>  
+                <div class="service-text">
+                    <h3 class="h2">Data Refresh</h3>
+                    <p>The data for the app is refreshed daily as the NHS services publish their data. <a href="https://coronavirus.data.gov.uk/" target="_blank">View data source.</a> It is possible that the data is one day old as the new data has not yet been published/retrieved.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-block service-item" data-aos="fade-up">
+                <div class="service-icon">
+                    <i class="icon-euro"></i>
+                </div>
+                <div class="service-text">
+                    <h3 class="h2">Supporting The App</h3>
+                    <p>If you are enjoying this app, please consider <a href="https://monzo.me/bradleykennedy5/5.00?d=COVID-19%20Vaccine%20App" target="_blank">supporting me</a> to cover the hosting server cost. Thank you!
+                    </p>
+                </div>
+            </div>
+    
+            <div class="col-block service-item" data-aos="fade-up">
+                <div class="service-icon">
+                  <i class="icon-user"></i></div>
+                <div class="service-text">
+                    <h3 class="h2">Who Created This</h3>
+                    <p>Hi there - My name is Brad, you can read more about me <a href="https://bradleykennedy.co.uk" target="_blank">here.</a>
+                    </p>
+                </div>
+            </div>
+
+        </div> <!-- end services-list -->
+
+    </section> <!-- end s-services -->
+    
+    <!-- footer
+    ================================================== -->
+    <footer id='footer'>
+        
+        <div class="row footer-main">
+
+            <div class="col-six tab-full left footer-desc">
+
+                <h3 class="subhead">COVID-19 Vaccination Progress App</h3>
+Created, hosted and maintained by <a href="https://bradleykennedy.co.uk" target="_blank">Brad Kennedy</a>.<br><a href="https://coronavirus.data.gov.uk/" target="_blank">View data source.</a><br><br>If you enjoy using this app, please consider <a href="https://monzo.me/bradleykennedy5/5.00?d=COVID-19%20Vaccine%20App" target="_blank">supporting me.</a> Thank you! 
+
+            </div>
+
+            <div class="col-six tab-full right footer-subscribe">
+
+                <h4>Suggestions and issues</h4>
+                <p>If you have ideas for how to improve the app or if you notice issues, please add your suggestions / bug reports.<a class="btn btn--primary full-width" href="https://gitreports.com/issue/b-kennedy0/COVID19-Vaccine-App" target="_blank">Submit a Suggestion/Bug report</a></p>
+
+            </div>
+
+        </div> <!-- end footer-main -->
+
+        <div class="row footer-bottom">
+
+            <div class="col-twelve">
+                <div class="copyright">
+                    <span>© Kennedy 2021</span>
+                    <span><p xmlns:cc="http://creativecommons.org/ns#" ><a href="http://creativecommons.org/licenses/by-nc/4.0" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/nc.svg"></a></p></span>
+                </div>
+
+                <div class="go-top">
+                    <a class="smoothscroll" title="Back to Top" href="#top"><i class="icon-arrow-up" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+        </div> <!-- end footer-bottom -->
+
+    </footer> <!-- end footer -->
+    
+
+    <!-- preloader
+    ================================================== -->
+    <div id="preloader">
+        <div id="loader">
+            <div class="line-scale-pulse-out">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Java Script
+    ================================================== -->
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
