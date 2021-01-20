@@ -1,13 +1,21 @@
+![GitHub Release Date](https://img.shields.io/github/release-date/b-kennedy0/COVID19-Vaccine-App)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/b-kennedy0/COVID19-Vaccine-App)
 ![Github](https://img.shields.io/github/license/b-kennedy0/COVID19-Vaccine-App)
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 
+![GitHub issues](https://img.shields.io/github/issues/b-kennedy0/COVID19-Vaccine-App)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/b-kennedy0/COVID19-Vaccine-App)
+
 # COVID19-Vaccine-App
+![GitHub Repo stars](https://img.shields.io/github/stars/b-kennedy0/COVID19-Vaccine-App?style=social)
+
 ## An app to show the progression of UK COVID-19 Vaccinations
 
 ---  
 [Launch App](https://bradk.co.uk/covid)
+
 ---  
+
 ### About
 The app was created to enable the centralised sharing of UK-wide vaccination progress. Each NHS service (England, Wales, Scotland, Northern Ireland) are each publishing their vaccination data and this is collated into the <a href="https://coronavirus.data.gov.uk" target="_blank">Government Dashboard</a>. The Government Dashboard isn't the clearest at presenting the vaccine data so this app was created to do that. Created using R and RStudio.
 
