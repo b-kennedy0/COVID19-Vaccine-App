@@ -17,6 +17,13 @@
 
 ---  
 
+## CONTENTS
+* [About](#about)
+* [Design](#design)
+* [Data](#data)
+* [Contributing](#contributing)
+* [Questions / Discussion](#questions-/-discussion)
+
 ### About
 The app was created to enable the centralised sharing of UK-wide vaccination progress. Each NHS service (England, Wales, Scotland, Northern Ireland) are each publishing their vaccination data and this is collated into the <a href="https://coronavirus.data.gov.uk" target="_blank">Government Dashboard</a>. The Government Dashboard isn't the clearest at presenting the vaccine data so this app was created to do that. Created using R and RStudio.
 
