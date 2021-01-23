@@ -1,6 +1,6 @@
 server <- function(input, output) {
   
-  # Latest Date
+  # Latest Date ----------------------------------------------------------
   latest <- format(as.Date(max(dataset$date)), format = "%d/%m/%Y")
   output$latest_date <- renderText({
     latest
@@ -14,6 +14,21 @@ server <- function(input, output) {
   uk_pop <- sum(eng_pop,wal_pop,sco_pop,ni_pop)
   uk_total <- sum(dataset$cumPeopleVaccinatedFirstDoseByPublishDate
                   [dataset$date==max(dataset$date)])
+  # Population data formatted for use in index -----------------------------
+  output$england <- renderText({
+    format(as.numeric(eng_pop), big.mark = ",")
+  })
+  output$wales <- renderText({
+    format(as.numeric(wal_pop), big.mark = ",")
+  })
+  output$scotland <- renderText({
+    format(as.numeric(sco_pop), big.mark = ",")
+  })
+  output$northernireland <- renderText({
+    format(as.numeric(ni_pop), big.mark = ",")
+  })
+  
+  # Formatting vaccine data (% and No) for use in index ----------------------
   
   # Total % UK Vaccines
   output$total_uk_perc <- renderText({

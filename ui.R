@@ -7,6 +7,26 @@ ui = shiny::htmlTemplate(
     inline = T
   ),
   
+  england = textOutput(
+    "england",
+    inline = T
+  ),
+  
+  wales = textOutput(
+    "wales",
+    inline = T
+  ),
+  
+  scotland = textOutput(
+    "scotland",
+    inline = T
+  ),
+  
+  northernireland = textOutput(
+    "northernireland",
+    inline = T
+  ),
+  
   total_perc_vaccines_uk = textOutput(
     "total_uk_perc",
     inline = T

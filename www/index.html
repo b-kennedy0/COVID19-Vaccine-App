@@ -82,7 +82,7 @@
 
             <div class="row home-content__main">
 
-                <h3>COVID-19 Vaccination Data (UK)</h3>
+                <h3>COVID-19 UK Vaccination Data (App {{version}})</h3>
 
                 <h1>
                     This app shows the<br>
@@ -227,6 +227,7 @@ document.getElementById("date").innerHTML = d + "/" + m + "/" + y;</script></h4>
             <div class="col-full">
                 <h3 class="subhead">About this App</h3>
                 <h1 class="display-2">COVID-19 Vaccination Progress App</h1>
+                <h3 class="subhead">{{version}}</h3>
             </div>
         </div> <!-- end section-header -->
 
@@ -238,7 +239,7 @@ document.getElementById("date").innerHTML = d + "/" + m + "/" + y;</script></h4>
                 </div>
                 <div class="service-text">
                     <h3 class="h2">Keeping You Updated</h3>
-                    <p>The app was created to enable the centralised sharing of UK-wide vaccination progress. Each NHS service (England, Wales, Scotland, Northern Ireland) are each publishing their vaccination data and this is collated into the <a href="https://coronavirus.data.gov.uk" target="_blank">Government Dashboard</a>. The Government Dashboard isn't the clearest at presenting the vaccine data so this app was created to do that. Created using R and RStudio.</p>
+                    <p>The app was created to share UK-wide vaccination progress. Every day, each NHS service is publishing their data, collated on the <a href="https://coronavirus.data.gov.uk" target="_blank">Government Dashboard</a>. However, the government dashboard isn't the easiest to use and so this app was created to do that.</p>
                 </div>
             </div>
 
@@ -248,7 +249,7 @@ document.getElementById("date").innerHTML = d + "/" + m + "/" + y;</script></h4>
                 </div>
                 <div class="service-text">
                     <h3 class="h2">Simple Design</h3>
-                    <p>The app was designed to  run in a web browser on all device types. It is aimed to be as clear and simple as possible.</p>
+                    <p>The app was coded using R, RStudio and ShinyApps. It is designed to run in a web browser on all device types with the aim of being as clear and simple as possible.</p>
                 </div>
             </div>
 
@@ -268,8 +269,14 @@ document.getElementById("date").innerHTML = d + "/" + m + "/" + y;</script></h4>
                     <i class="icon-clock"></i>
                 </div>  
                 <div class="service-text">
-                    <h3 class="h2">Data Refresh</h3>
-                    <p>The data for the app is refreshed daily as the NHS services publish their data. <a href="https://coronavirus.data.gov.uk/" target="_blank">View data source.</a> Although the data is pulled daily, depending on what time you view the app, it is possible that the data is one/two days old as the latest data has not yet been published.
+                    <h3 class="h2">App Data Refresh</h3>
+                    <p>The data is refreshed daily. However, depending on when you view the app, it is possible that the data is one/two days old as the latest data has not yet been published.<br />Population data is estimated from the <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates" target="_blank" rel="noopener">Office for National Statistics</a> (ONS). Currently using the following figures:
+                    <ul class="stats-tabs">
+                        <li><a>{{england}} <em>England</em></a></li>
+                        <li><a>{{wales}} <em>Wales</em></a></li>
+                        <li><a>{{scotland}} <em>Scotland</em></a></li>
+                        <li><a>{{northernireland}} <em>Northern Ireland</em></a></li>
+                    </ul>
                     </p>
                 </div>
             </div>
