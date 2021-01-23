@@ -37,7 +37,7 @@ ui = shiny::htmlTemplate(
     inline = T
   ),
   
-  # Englnad %
+  # England %
   eng_vaccines_pc = textOutput(
     "eng",
     inline = T
