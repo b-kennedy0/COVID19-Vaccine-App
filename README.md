@@ -25,17 +25,18 @@
 * [Questions / Discussion](#questions--discussion)
 
 ### About
-The app was created to enable the centralised sharing of UK-wide vaccination progress. Each NHS service (England, Wales, Scotland, Northern Ireland) are each publishing their vaccination data and this is collated into the <a href="https://coronavirus.data.gov.uk" target="_blank">Government Dashboard</a>. The Government Dashboard isn't the clearest at presenting the vaccine data so this app was created to do that. Created using R and RStudio.
+The app was created to share UK-wide vaccination progress. Every day, each NHS service is publishing their data, collated on the <a href="https://coronavirus.data.gov.uk" target="_blank">Government Dashboard</a>. However, the government dashboard isn't the easiest to use and so this app was created to do that.
 
 ---
 
 ### Design
-The app was designed to  run in a web browser on all device types. It is aimed to be as clear and simple as possible.
+The app was coded using R, RStudio and ShinyApps. It is designed to run in a web browser on all device types with the aim of being as clear and simple as possible.
 
 ---
 
 ### Data
-The data for the app is refreshed daily as the NHS services publish their data. <a href="https://coronavirus.data.gov.uk/" target="_blank">View data source.</a> Although the data is pulled daily, depending on what time you view the app, it is possible that the data is one/two days old as the latest data has not yet been published.
+The data is refreshed daily. However, depending on when you view the app, it is possible that the data is one/two days old as the latest data has not yet been published.
+Population data is estimated from the <a href="https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates" target="_blank" rel="noopener">Office for National Statistics</a> (ONS).
 
 ---
 
