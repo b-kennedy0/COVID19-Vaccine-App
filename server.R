@@ -1,5 +1,5 @@
 server <- function(input, output) {
-  
+
   # Latest Date ----------------------------------------------------------
   latest <- format(as.Date(max(dataset$date)), format = "%d/%m/%Y")
   output$latest_date <- renderText({
@@ -7,10 +7,10 @@ server <- function(input, output) {
   })
   
   # Populations (https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates)
-  eng_pop <- 56287000
-  wal_pop <- 3152900
-  sco_pop <- 5463300
-  ni_pop <- 1893700
+  eng_pop <- 44263393
+  wal_pop <- 2522940
+  sco_pop <- 4434138
+  ni_pop <- 1452962
   uk_pop <- sum(eng_pop,wal_pop,sco_pop,ni_pop)
   uk_total <- sum(dataset$cumPeopleVaccinatedFirstDoseByPublishDate
                   [dataset$date==max(dataset$date)])
