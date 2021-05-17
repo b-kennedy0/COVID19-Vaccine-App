@@ -14,6 +14,8 @@ server <- function(input, output) {
   uk_pop <- sum(eng_pop,wal_pop,sco_pop,ni_pop)
   uk_total <- sum(dataset$cumPeopleVaccinatedFirstDoseByPublishDate
                   [dataset$date==max(dataset$date)])
+  uk_total2 <- sum(dataset$cumPeopleVaccinatedSecondDoseByPublishDate
+                  [dataset$date==max(dataset$date)])
   # Population data formatted for use in index -----------------------------
   output$england <- renderText({
     format(as.numeric(eng_pop), big.mark = ",")
@@ -28,7 +30,7 @@ server <- function(input, output) {
     format(as.numeric(ni_pop), big.mark = ",")
   })
   
-  # Formatting vaccine data (% and No) for use in index ----------------------
+  # Formatting vaccine data (% and No) for use in index 1st DOSE ----------------------
   
   # Total % UK Vaccines
   output$total_uk_perc <- renderText({
@@ -96,6 +98,78 @@ server <- function(input, output) {
   # NI No
   output$ni_no <- renderText({
     format(as.numeric(dataset$cumPeopleVaccinatedFirstDoseByPublishDate
+                      [dataset$date==max(dataset$date) 
+                        & dataset$areaName=="Northern Ireland"]), big.mark = ",")
+  })
+  
+  # Formatting vaccine data (% and No) for use in index 2nd DOSE ----------------------
+  
+  # Total % UK Vaccines 2ndDose
+  output$total_uk_perc_2ndDose <- renderText({
+    format(round(as.numeric((uk_total2 / uk_pop) * 100), digits = 2), nsmall = 2)
+  })
+  
+  # Total no UK Vaccines 2ndDose
+  output$total_uk_no_2ndDose <- renderText({
+    format(as.numeric(uk_total2), big.mark = ",")
+  })
+  
+  # England % 2ndDose
+  output$eng_2ndDose <- renderText({
+    format(round(as.numeric((dataset$cumPeopleVaccinatedSecondDoseByPublishDate
+                             [dataset$date==max(dataset$date) 
+                               & dataset$areaName=="England"] / eng_pop) * 100), 
+                 digits = 2), nsmall = 2)
+  })
+  
+  # Wales % 2ndDose
+  output$wal_2ndDose <- renderText({
+    format(round(as.numeric((dataset$cumPeopleVaccinatedSecondDoseByPublishDate
+                             [dataset$date==max(dataset$date) 
+                               & dataset$areaName=="Wales"] / wal_pop)  * 100), 
+                 digits = 2), nsmall = 2)
+  })
+  
+  # Scotland % 2ndDose
+  output$sco_2ndDose <- renderText({
+    format(round(as.numeric((dataset$cumPeopleVaccinatedSecondDoseByPublishDate
+                             [dataset$date==max(dataset$date) 
+                               & dataset$areaName=="Scotland"] / sco_pop) * 100), 
+                 digits = 2), nsmall = 2)
+  })
+  
+  # NI % 2ndDose
+  output$ni_2ndDose <- renderText({
+    format(round(as.numeric((dataset$cumPeopleVaccinatedSecondDoseByPublishDate
+                             [dataset$date==max(dataset$date) 
+                               & dataset$areaName=="Northern Ireland"] / ni_pop) * 100), 
+                 digits = 2), nsmall = 2)
+  })
+  
+  # England No 2ndDose
+  output$eng_no_2ndDose <- renderText({
+    format(as.numeric(dataset$cumPeopleVaccinatedSecondDoseByPublishDate
+                      [dataset$date==max(dataset$date) 
+                        & dataset$areaName=="England"]), big.mark = ",")
+  })
+  
+  # Wales No 2ndDose
+  output$wal_no_2ndDose <- renderText({
+    format(as.numeric(dataset$cumPeopleVaccinatedSecondDoseByPublishDate
+                      [dataset$date==max(dataset$date) 
+                        & dataset$areaName=="Wales"]), big.mark = ",")
+  })
+  
+  # Scotland No 2ndDose
+  output$sco_no_2ndDose <- renderText({
+    format(as.numeric(dataset$cumPeopleVaccinatedSecondDoseByPublishDate
+                      [dataset$date==max(dataset$date) 
+                        & dataset$areaName=="Scotland"]), big.mark = ",")
+  })
+  
+  # NI No 2ndDose
+  output$ni_no_2ndDose <- renderText({
+    format(as.numeric(dataset$cumPeopleVaccinatedSecondDoseByPublishDate
                       [dataset$date==max(dataset$date) 
                         & dataset$areaName=="Northern Ireland"]), big.mark = ",")
   })
